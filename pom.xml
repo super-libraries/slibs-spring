@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.0.1-Beta1</version>
+    <version>0.0.1-Beta2</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring projects</name>
@@ -19,7 +19,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.0.3</slibs-base.version>
+        <slibs-base.version>0.0.4</slibs-base.version>
         <lombok.version>1.18.30</lombok.version>
         <swagger-anno-v3.version>2.2.20</swagger-anno-v3.version>
         <swagger-anno-v2.version>1.6.12</swagger-anno-v2.version>
@@ -48,16 +48,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger-anno-v3.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger-anno-v2.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
@@ -77,7 +67,6 @@
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.slf4j</groupId>

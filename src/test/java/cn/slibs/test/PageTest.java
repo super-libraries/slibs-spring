@@ -1,6 +1,6 @@
 package cn.slibs.test;
 
-import cn.slibs.spring.page.v3.Page;
+import cn.slibs.base.page.v3.Page;
 import cn.slibs.spring.utils.PageUtils;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +18,11 @@ public class PageTest {
         List<String> datas = new ArrayList<>();
         datas.add("a");
         datas.add("b");
-        // Page<Object> pageV2 = PageUtils.toPageV2(null);
-        Page<String> pageV3 = PageUtils.toPageV3(datas);
-        System.out.println(pageV3);
+        cn.slibs.base.page.v2.Page<Object> page = PageUtils.toPageV2(null);
+        cn.slibs.base.page.v2.Page<Object> page1 = PageUtils.toPageV2(new ArrayList<>());
+        Page<String> page2 = PageUtils.toPageV3(datas);
+        System.out.println(page);
+        System.out.println(page1);
+        System.out.println(page2);
     }
 }
