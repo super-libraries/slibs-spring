@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.0.1-Beta2</version>
+    <version>0.0.1</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring projects</name>
@@ -19,22 +19,27 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.0.4</slibs-base.version>
+        <falcon.version>0.5.1</falcon.version>
+        <slibs-base.version>0.0.7</slibs-base.version>
+
         <lombok.version>1.18.30</lombok.version>
-        <swagger-anno-v3.version>2.2.20</swagger-anno-v3.version>
-        <swagger-anno-v2.version>1.6.12</swagger-anno-v2.version>
-        <spring.version>5.3.31</spring.version>
+        <slf4j.version>2.0.7</slf4j.version>
+
+        <spring.version>5.3.31</spring.version>     <!-- 对应 spring-boot v2.7.18 -->
         <pagehelper.version>5.3.3</pagehelper.version>
         <mybatis-spring.version>2.1.2</mybatis-spring.version>
         <mybatis.version>3.5.11</mybatis.version>
-
-        <slf4j.version>2.0.7</slf4j.version>
 
         <junit5.version>5.10.1</junit5.version>
     </properties>
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.iofairy</groupId>
+            <artifactId>falcon</artifactId>
+            <version>${falcon.version}</version>
+        </dependency>
         <dependency>
             <groupId>cn.slibs</groupId>
             <artifactId>slibs-base</artifactId>

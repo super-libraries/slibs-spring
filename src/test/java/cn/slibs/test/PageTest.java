@@ -21,8 +21,10 @@ public class PageTest {
         cn.slibs.base.page.v2.Page<Object> page = PageUtils.toPageV2(null);
         cn.slibs.base.page.v2.Page<Object> page1 = PageUtils.toPageV2(new ArrayList<>());
         Page<String> page2 = PageUtils.toPageV3(datas);
+        Page<String> page3 = PageUtils.toPage(datas);
         System.out.println(page);
         System.out.println(page1);
         System.out.println(page2);
+        System.out.println(page3);
     }
 }

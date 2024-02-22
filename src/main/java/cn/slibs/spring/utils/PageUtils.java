@@ -32,6 +32,17 @@ public class PageUtils {
      * @param <T>  数据类型
      * @return <b>swagger-v3</b> 的分页类
      */
+    public static <T> cn.slibs.base.page.v3.Page<T> toPage(List<T> data) {
+        return toPageV3(data);
+    }
+
+    /**
+     * 将数据转为 <b>swagger-v3</b> 的分页类
+     *
+     * @param data 数据
+     * @param <T>  数据类型
+     * @return <b>swagger-v3</b> 的分页类
+     */
     public static <T> cn.slibs.base.page.v3.Page<T> toPageV3(List<T> data) {
         if (data == null) data = new ArrayList<>();
 
