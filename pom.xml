@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.10</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring projects</name>
@@ -19,10 +19,9 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <falcon.version>0.5.1</falcon.version>
-        <slibs-base.version>0.0.7</slibs-base.version>
+        <slibs-base.version>0.0.10</slibs-base.version>
 
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.32</lombok.version>
         <slf4j.version>2.0.7</slf4j.version>
 
         <spring.version>5.3.31</spring.version>     <!-- 对应 spring-boot v2.7.18 -->
@@ -35,11 +34,6 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>com.iofairy</groupId>
-            <artifactId>falcon</artifactId>
-            <version>${falcon.version}</version>
-        </dependency>
         <dependency>
             <groupId>cn.slibs</groupId>
             <artifactId>slibs-base</artifactId>
@@ -214,6 +208,13 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>/META-INF</targetPath>
+            </resource>
+        </resources>
     </build>
 
 

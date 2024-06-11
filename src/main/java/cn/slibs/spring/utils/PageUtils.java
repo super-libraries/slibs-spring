@@ -9,7 +9,9 @@ import java.util.List;
  * 分页工具类
  *
  * @since 0.0.1
+ * @deprecated Since version 0.0.10, replaced by {@link cn.slibs.spring.page.Pages}
  */
+@Deprecated
 public class PageUtils {
     /**
      * 将数据转为 <b>swagger-v2</b> 的分页类
