@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.0.10</version>
+    <version>0.1.0</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring projects</name>
@@ -19,7 +19,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.0.10</slibs-base.version>
+        <slibs-base.version>0.1.0</slibs-base.version>
 
         <lombok.version>1.18.32</lombok.version>
         <slf4j.version>2.0.7</slf4j.version>
