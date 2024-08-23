@@ -25,31 +25,40 @@ public class RestHelper {
         return new RestHelper(restTemplate);
     }
 
-    public <REQ, RES> RES postForEntity(String url, REQ req, HttpHeaders headers, Class<RES> resClass) {
-        HttpEntity<REQ> formEntity = new HttpEntity<>(req, headers);
-        return restTemplate.postForEntity(url, formEntity, resClass).getBody();
+    public <REQ, RES> RES postForEntity(String url, REQ req, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.postForEntity(url, httpEntity, responseType).getBody();
     }
 
-    public <REQ, RES> RES postForEntity(String url, REQ req, Class<RES> resClass) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));
-        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-        return postForEntity(url, req, headers, resClass);
+    public <REQ, RES> RES postForEntity(String url, REQ req, Class<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        return postForEntity(url, req, headers, responseType);
     }
 
     public <REQ> String postForString(String url, REQ req) {
         return postForEntity(url, req, String.class);
     }
 
-    public <RES> RES getForEntity(String url, HttpHeaders headers, Class<RES> resClass) {
-        HttpEntity<Object> formEntity = new HttpEntity<>(null, headers);
-        return restTemplate.exchange(url, HttpMethod.GET, formEntity, resClass).getBody();
+    public <REQ, RES> RES getWithBody(String url, REQ req, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
     }
 
-    public <RES> RES getForEntity(String url, Class<RES> resClass) {
+    public <REQ, RES> RES getWithBody(String url, REQ req, Class<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
+    public <RES> RES getForEntity(String url, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<Object> httpEntity = new HttpEntity<>(null, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
+    public <RES> RES getForEntity(String url, Class<RES> responseType) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-        return getForEntity(url, headers, resClass);
+        return getForEntity(url, headers, responseType);
     }
 
     public String getForString(String url) {
@@ -62,20 +71,29 @@ public class RestHelper {
      * ===============================
      */
     public <REQ, RES> RES postForEntity(String url, REQ req, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
-        HttpEntity<REQ> formEntity = new HttpEntity<>(req, headers);
-        return restTemplate.exchange(url, HttpMethod.POST, formEntity, responseType).getBody();
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.POST, httpEntity, responseType).getBody();
     }
 
     public <REQ, RES> RES postForEntity(String url, REQ req, ParameterizedTypeReference<RES> responseType) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));
-        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+        HttpHeaders headers = getHttpHeadersWithJsonType();
         return postForEntity(url, req, headers, responseType);
     }
 
+    public <REQ, RES> RES getWithBody(String url, REQ req, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
+    public <REQ, RES> RES getWithBody(String url, REQ req, ParameterizedTypeReference<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
     public <RES> RES getForEntity(String url, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
-        HttpEntity<Object> formEntity = new HttpEntity<>(null, headers);
-        return restTemplate.exchange(url, HttpMethod.GET, formEntity, responseType).getBody();
+        HttpEntity<Object> httpEntity = new HttpEntity<>(null, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
     }
 
     public <RES> RES getForEntity(String url, ParameterizedTypeReference<RES> responseType) {
@@ -88,31 +106,40 @@ public class RestHelper {
     /*==================================================
      ******************   静态方法调用  ******************
      ==================================================*/
-    public static <REQ, RES> RES postForEntity(RestTemplate restTemplate, String url, REQ req, HttpHeaders headers, Class<RES> resClass) {
-        HttpEntity<REQ> formEntity = new HttpEntity<>(req, headers);
-        return restTemplate.postForEntity(url, formEntity, resClass).getBody();
+    public static <REQ, RES> RES postForEntity(RestTemplate restTemplate, String url, REQ req, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.postForEntity(url, httpEntity, responseType).getBody();
     }
 
-    public static <REQ, RES> RES postForEntity(RestTemplate restTemplate, String url, REQ req, Class<RES> resClass) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));
-        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-        return postForEntity(restTemplate, url, req, headers, resClass);
+    public static <REQ, RES> RES postForEntity(RestTemplate restTemplate, String url, REQ req, Class<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        return postForEntity(restTemplate, url, req, headers, responseType);
     }
 
     public static <REQ> String postForString(RestTemplate restTemplate, String url, REQ req) {
         return postForEntity(restTemplate, url, req, String.class);
     }
 
-    public static <RES> RES getForEntity(RestTemplate restTemplate, String url, HttpHeaders headers, Class<RES> resClass) {
-        HttpEntity<Object> formEntity = new HttpEntity<>(null, headers);
-        return restTemplate.exchange(url, HttpMethod.GET, formEntity, resClass).getBody();
+    public static <REQ, RES> RES getWithBody(RestTemplate restTemplate, String url, REQ req, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
     }
 
-    public static <RES> RES getForEntity(RestTemplate restTemplate, String url, Class<RES> resClass) {
+    public static <REQ, RES> RES getWithBody(RestTemplate restTemplate, String url, REQ req, Class<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
+    public static <RES> RES getForEntity(RestTemplate restTemplate, String url, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<Object> httpEntity = new HttpEntity<>(null, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
+    public static <RES> RES getForEntity(RestTemplate restTemplate, String url, Class<RES> responseType) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-        return getForEntity(restTemplate, url, headers, resClass);
+        return getForEntity(restTemplate, url, headers, responseType);
     }
 
     public static String getForString(RestTemplate restTemplate, String url) {
@@ -125,20 +152,29 @@ public class RestHelper {
      * ===============================
      */
     public static <REQ, RES> RES postForEntity(RestTemplate restTemplate, String url, REQ req, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
-        HttpEntity<REQ> formEntity = new HttpEntity<>(req, headers);
-        return restTemplate.exchange(url, HttpMethod.POST, formEntity, responseType).getBody();
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.POST, httpEntity, responseType).getBody();
     }
 
     public static <REQ, RES> RES postForEntity(RestTemplate restTemplate, String url, REQ req, ParameterizedTypeReference<RES> responseType) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));
-        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+        HttpHeaders headers = getHttpHeadersWithJsonType();
         return postForEntity(restTemplate, url, req, headers, responseType);
     }
 
+    public static <REQ, RES> RES getWithBody(RestTemplate restTemplate, String url, REQ req, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
+    public static <REQ, RES> RES getWithBody(RestTemplate restTemplate, String url, REQ req, ParameterizedTypeReference<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
+    }
+
     public static <RES> RES getForEntity(RestTemplate restTemplate, String url, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
-        HttpEntity<Object> formEntity = new HttpEntity<>(null, headers);
-        return restTemplate.exchange(url, HttpMethod.GET, formEntity, responseType).getBody();
+        HttpEntity<Object> httpEntity = new HttpEntity<>(null, headers);
+        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, responseType).getBody();
     }
 
     public static <RES> RES getForEntity(RestTemplate restTemplate, String url, ParameterizedTypeReference<RES> responseType) {
@@ -147,4 +183,11 @@ public class RestHelper {
         return getForEntity(restTemplate, url, headers, responseType);
     }
 
+
+    private static HttpHeaders getHttpHeadersWithJsonType() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));
+        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+        return headers;
+    }
 }
