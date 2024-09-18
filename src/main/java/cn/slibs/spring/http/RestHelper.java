@@ -65,6 +65,16 @@ public class RestHelper {
         return getForEntity(url, new HttpHeaders(), String.class);
     }
 
+    public <REQ, RES> RES exchange(String url, HttpMethod method, REQ req, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, method, httpEntity, responseType).getBody();
+    }
+
+    public <REQ, RES> RES exchange(String url, HttpMethod method, REQ req, Class<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        return exchange(url, method, req, headers, responseType);
+    }
+
     /*
      * ===============================
      * *****    返回带泛型的实体    *****
@@ -102,6 +112,15 @@ public class RestHelper {
         return getForEntity(url, headers, responseType);
     }
 
+    public <REQ, RES> RES exchange(String url, HttpMethod method, REQ req, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, method, httpEntity, responseType).getBody();
+    }
+
+    public <REQ, RES> RES exchange(String url, HttpMethod method, REQ req, ParameterizedTypeReference<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        return exchange(url, method, req, headers, responseType);
+    }
 
     /*==================================================
      ******************   静态方法调用  ******************
@@ -146,6 +165,16 @@ public class RestHelper {
         return getForEntity(restTemplate, url, new HttpHeaders(), String.class);
     }
 
+    public static <REQ, RES> RES exchange(RestTemplate restTemplate, String url, HttpMethod method, REQ req, HttpHeaders headers, Class<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, method, httpEntity, responseType).getBody();
+    }
+
+    public static <REQ, RES> RES exchange(RestTemplate restTemplate, String url, HttpMethod method, REQ req, Class<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        return exchange(restTemplate, url, method, req, headers, responseType);
+    }
+
     /*
      * ===============================
      * *****    返回带泛型的实体    *****
@@ -183,7 +212,22 @@ public class RestHelper {
         return getForEntity(restTemplate, url, headers, responseType);
     }
 
+    public static <REQ, RES> RES exchange(RestTemplate restTemplate, String url, HttpMethod method, REQ req, HttpHeaders headers, ParameterizedTypeReference<RES> responseType) {
+        HttpEntity<REQ> httpEntity = new HttpEntity<>(req, headers);
+        return restTemplate.exchange(url, method, httpEntity, responseType).getBody();
+    }
 
+    public static <REQ, RES> RES exchange(RestTemplate restTemplate, String url, HttpMethod method, REQ req, ParameterizedTypeReference<RES> responseType) {
+        HttpHeaders headers = getHttpHeadersWithJsonType();
+        return exchange(restTemplate, url, method, req, headers, responseType);
+    }
+
+
+    /**
+     * Get HttpHeaders With JsonType
+     *
+     * @return HttpHeaders
+     */
     private static HttpHeaders getHttpHeadersWithJsonType() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"));
