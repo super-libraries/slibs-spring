@@ -2,10 +2,11 @@ package cn.slibs.spring.http;
 
 import com.iofairy.top.O;
 import org.springframework.http.HttpHeaders;
-import org.springframework.lang.Nullable;
+import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
 
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ import static com.iofairy.falcon.misc.Preconditions.*;
  */
 public class HttpHeadersBuilder {
 
-    private HttpHeaders httpHeaders;
+    private final HttpHeaders httpHeaders;
 
     public HttpHeadersBuilder() {
         this.httpHeaders = new HttpHeaders();
@@ -58,7 +59,17 @@ public class HttpHeadersBuilder {
         return this;
     }
 
-    public HttpHeadersBuilder set(String headerName, @Nullable String headerValue) {
+    public HttpHeadersBuilder addContentType(String contentType) {
+        checkBlank(contentType, args("contentType"));
+        httpHeaders.add("Content-Type", contentType);
+        return this;
+    }
+
+    public HttpHeadersBuilder addJsonContentType() {
+        return addContentType("application/json");
+    }
+
+    public HttpHeadersBuilder set(String headerName, String headerValue) {
         checkEmpty(headerName, args("headerName"));
         httpHeaders.set(headerName, headerValue);
         return this;
@@ -70,7 +81,36 @@ public class HttpHeadersBuilder {
         return this;
     }
 
+    public HttpHeadersBuilder setContentType(MediaType mediaType) {
+        httpHeaders.setContentType(mediaType);
+        return this;
+    }
+
+    public HttpHeadersBuilder setAccept(List<MediaType> acceptableMediaTypes) {
+        httpHeaders.setAccept(acceptableMediaTypes);
+        return this;
+    }
+
+    public HttpHeadersBuilder setAcceptCharset(List<Charset> acceptableCharsets) {
+        httpHeaders.setAcceptCharset(acceptableCharsets);
+        return this;
+    }
+
     public HttpHeaders build() {
         return httpHeaders;
     }
+
+
+    /**
+     * Get HttpHeaders With JsonType
+     *
+     * @return HttpHeaders
+     */
+    public static HttpHeaders getHttpHeadersWithJsonType() {
+        return HttpHeadersBuilder.create()
+                .setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"))
+                .add("Accept", MediaType.APPLICATION_JSON.toString())
+                .build();
+    }
+
 }

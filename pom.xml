@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring projects</name>
@@ -19,15 +19,15 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.1.1</slibs-base.version>
+        <slibs-base.version>0.1.2</slibs-base.version>
 
-        <lombok.version>1.18.32</lombok.version>
+        <lombok.version>1.18.36</lombok.version>
         <slf4j.version>2.0.7</slf4j.version>
 
         <spring.version>5.3.31</spring.version>     <!-- 对应 spring-boot v2.7.18 -->
         <pagehelper.version>5.3.3</pagehelper.version>
         <mybatis-spring.version>2.1.2</mybatis-spring.version>
-        <mybatis.version>3.5.11</mybatis.version>
+        <mybatis.version>3.5.19</mybatis.version>
 
         <junit5.version>5.10.1</junit5.version>
     </properties>
@@ -49,6 +49,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
