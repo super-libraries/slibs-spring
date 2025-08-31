@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring projects</name>
@@ -19,9 +19,9 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.1.2</slibs-base.version>
+        <slibs-base.version>0.2.0</slibs-base.version>
 
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.38</lombok.version>
         <slf4j.version>2.0.7</slf4j.version>
 
         <spring.version>5.3.31</spring.version>     <!-- 对应 spring-boot v2.7.18 -->
@@ -112,20 +112,18 @@
         <developerConnection>scm:git:git@github.com:super-libraries/slibs-spring.git</developerConnection>
     </scm>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>oss</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>oss</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+
             <!-- compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

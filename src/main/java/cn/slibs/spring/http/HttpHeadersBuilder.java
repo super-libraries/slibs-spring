@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
-import static com.iofairy.falcon.misc.Preconditions.*;
+import static com.iofairy.validator.Preconditions.*;
 
 /**
  * HttpHeaders 构建器
@@ -100,6 +100,16 @@ public class HttpHeadersBuilder {
         return httpHeaders;
     }
 
+    /**
+     * Get HttpHeadersBuilder With JsonType
+     *
+     * @return HttpHeaders
+     */
+    public static HttpHeadersBuilder getHeadersBuilderWithJsonType() {
+        return HttpHeadersBuilder.create()
+                .setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"))
+                .add("Accept", MediaType.APPLICATION_JSON.toString());
+    }
 
     /**
      * Get HttpHeaders With JsonType
@@ -107,10 +117,7 @@ public class HttpHeadersBuilder {
      * @return HttpHeaders
      */
     public static HttpHeaders getHttpHeadersWithJsonType() {
-        return HttpHeadersBuilder.create()
-                .setContentType(MediaType.parseMediaType("application/json; charset=UTF-8"))
-                .add("Accept", MediaType.APPLICATION_JSON.toString())
-                .build();
+        return getHeadersBuilderWithJsonType().build();
     }
 
 }

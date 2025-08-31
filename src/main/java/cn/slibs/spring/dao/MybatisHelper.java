@@ -1,7 +1,7 @@
 package cn.slibs.spring.dao;
 
 import com.iofairy.except.GeneralException;
-import com.iofairy.falcon.id.TimedID;
+import com.iofairy.id.TimedID;
 import com.iofairy.falcon.iterable.CollectionKit;
 import com.iofairy.lambda.PT2;
 import com.iofairy.lambda.RT2;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static com.iofairy.falcon.misc.Preconditions.*;
+import static com.iofairy.validator.Preconditions.*;
 
 /**
  * Mybatis 工具类（<b>建议使用 {@code @Bean} 注入Spring容器中</b>）

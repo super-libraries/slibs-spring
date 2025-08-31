@@ -8,13 +8,13 @@ slibs for spring projects
 <dependency>
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
 ### Gradle
 ```
-implementation 'cn.slibs:slibs-spring:0.1.2'
+implementation 'cn.slibs:slibs-spring:0.2.0'
 ```
 
 
