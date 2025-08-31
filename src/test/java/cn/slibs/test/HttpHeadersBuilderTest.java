@@ -6,11 +6,7 @@ import org.springframework.http.HttpHeaders;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * @author GG
- * @version 1.0
- * @date 2024/9/15 15:30
- */
+
 public class HttpHeadersBuilderTest {
     @Test
     void testHttpHeadersCreate() {

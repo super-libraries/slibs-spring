@@ -7,11 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author GG
- * @version 1.0
- * @date 2024/1/5 8:08
- */
 public class PageTest {
     @Test
     void testToPage() {
