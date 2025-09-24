@@ -6,6 +6,7 @@ import com.iofairy.falcon.iterable.CollectionKit;
 import com.iofairy.lambda.PT2;
 import com.iofairy.lambda.RT2;
 import com.iofairy.tcf.Close;
+import com.iofairy.time.Stopwatch;
 import com.iofairy.top.G;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -184,6 +185,7 @@ public class MybatisHelper {
         SqlSession sqlSession = getSqlSession(sqlSessionTemplate.getSqlSessionFactory());
 
         final String logId = TimedID.getId();
+        Stopwatch stopwatch = Stopwatch.run();
         long processedCount = 0;
         long printLogCount = 0;
         try {
@@ -204,8 +206,8 @@ public class MybatisHelper {
                 }
             }
 
-            log.debug("batchUpdate_logId：{}，mapperClass：{}，处理完成。处理数据量：{}", logId, mapperClass.getSimpleName(), processedCount);
             sqlSession.commit();
+            log.debug("batchUpdate_logId：{}，mapperClass：{}，处理完成。处理数据量：{}。耗时：{}", logId, mapperClass.getSimpleName(), processedCount, stopwatch);
         } catch (Throwable e) {
             log.debug("batchUpdate_logId：{}，mapperClass：{}，处理失败，失败原因：{}，已处理数据量：{}", logId, mapperClass.getSimpleName(), e.getMessage(), processedCount);
             if (sqlSession != null) {
@@ -424,6 +426,7 @@ public class MybatisHelper {
                 : performInsertCondition;
 
         final String logId = TimedID.getId();
+        Stopwatch stopwatch = Stopwatch.run();
         long processedCount = 0;
         long printLogCount = 0;
         try {
@@ -448,9 +451,9 @@ public class MybatisHelper {
                     log.debug("batchSaveOrUpdate_logId：{}，mapperClass：{}，正在处理……已处理数据量：{}", logId, mapperClass.getSimpleName(), processedCount);
                 }
             }
-            log.debug("batchSaveOrUpdate_logId：{}，mapperClass：{}，处理完成。处理数据量：{}", logId, mapperClass.getSimpleName(), processedCount);
 
             sqlSession.commit();
+            log.debug("batchSaveOrUpdate_logId：{}，mapperClass：{}，处理完成。处理数据量：{}。耗时：{}", logId, mapperClass.getSimpleName(), processedCount, stopwatch);
         } catch (Throwable e) {
             log.debug("batchSaveOrUpdate_logId：{}，mapperClass：{}，处理失败，失败原因：{}，已处理数据量：{}", logId, mapperClass.getSimpleName(), e.getMessage(), processedCount);
             if (sqlSession != null) {
