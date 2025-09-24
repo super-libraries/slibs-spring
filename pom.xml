@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.slibs</groupId>
-    <artifactId>slibs-spring</artifactId>
-    <version>0.2.1_S6</version>
+    <artifactId>slibs-spring6</artifactId>
+    <version>0.2.2</version>
 
     <packaging>jar</packaging>
-    <name>A Java library for Spring projects</name>
-    <description>A Java library for Spring projects</description>
+    <name>A Java library for Spring6+</name>
+    <description>A Java library for Spring6+</description>
     <url>https://github.com/super-libraries/slibs-spring</url>
 
 
@@ -20,7 +20,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.2.0</slibs-base.version>
+        <slibs-base.version>0.2.2</slibs-base.version>
 
         <lombok.version>1.18.38</lombok.version>
         <slf4j.version>2.0.17</slf4j.version>
