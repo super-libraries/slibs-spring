@@ -6,7 +6,7 @@
 
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring6</artifactId>
-    <version>0.2.2</version>
+    <version>0.2.3</version>
 
     <packaging>jar</packaging>
     <name>A Java library for Spring6+</name>
@@ -20,7 +20,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <slibs-base.version>0.2.2</slibs-base.version>
+        <slibs-base.version>0.2.3</slibs-base.version>
 
         <lombok.version>1.18.38</lombok.version>
         <slf4j.version>2.0.17</slf4j.version>
