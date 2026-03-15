@@ -10,13 +10,13 @@ slibs for spring projects
 <dependency>
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring</artifactId>
-    <version>0.2.4</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```
-implementation 'cn.slibs:slibs-spring:0.2.4'
+implementation 'cn.slibs:slibs-spring:0.3.0'
 ```
 
 ### ➡️ JDK 17 + Spring 6.x + [MyBatis-Spring 3.x](https://mybatis.org/spring/) + Pagehelper 6.x
@@ -25,13 +25,13 @@ implementation 'cn.slibs:slibs-spring:0.2.4'
 <dependency>
     <groupId>cn.slibs</groupId>
     <artifactId>slibs-spring6</artifactId>
-    <version>0.2.4</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```
-implementation 'cn.slibs:slibs-spring6:0.2.4'
+implementation 'cn.slibs:slibs-spring6:0.3.0'
 ```
 
 
